@@ -3,6 +3,6 @@ main: com.pneumaticraft.scalamc.ScalaMC
 authors: ['lithium3141']
 version: maven-version-number
 commands:
-  ice:
-    description: Toggle ice
+  hello:
+    description: Say hello
     usage: /<command>
