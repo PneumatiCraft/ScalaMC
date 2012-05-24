@@ -16,9 +16,7 @@ package com.pneumaticraft.scalamc.commands {
         this.setPermission("scalamc.hello.use", "Use the /hello command", PermissionDefault.TRUE)
         this.addKey("hello")
     
-        override def runCommand(sender:CommandSender, args:List[String]) = {
-            sender.sendMessage("Hello!")
-        }
+        override def runCommand(sender:CommandSender, args:List[String]) = sender.sendMessage("Hello!")
         
     }
 
