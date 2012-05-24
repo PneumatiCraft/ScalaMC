@@ -1,12 +1,12 @@
 package com.pneumaticraft.scalamc.commands {
 
-    import org.bukkit.ChatColor;
-    import org.bukkit.command.{CommandSender, ConsoleCommandSender};
-    import org.bukkit.entity.Player;
-    import org.bukkit.plugin.java.JavaPlugin;
+    import org.bukkit.ChatColor
+    import org.bukkit.command.{CommandSender, ConsoleCommandSender}
+    import org.bukkit.entity.Player
+    import org.bukkit.plugin.java.JavaPlugin
     
-    import com.pneumaticraft.scalamc.ScalaMC;
-    import com.pneumaticraft.commandhandler.Command;
+    import com.pneumaticraft.scalamc.ScalaMC
+    import com.pneumaticraft.commandhandler.Command
     
     /**
      * Abstract parent class for all executable commands in ScalaMC. Every command
