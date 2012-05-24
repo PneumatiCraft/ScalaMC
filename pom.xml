@@ -135,6 +135,30 @@
                 </configuration>
             </plugin>
 
+            <!-- JarJar Plugin - repackaging with Scala jars for distribution -->
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>jarjar-maven-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals><goal>jarjar</goal></goals>
+                        <configuration>
+                            <includes>
+                                <include>org.scala-lang:scala-library</include>
+                            </includes>
+                            <rules>
+                                <rule>
+                                    <pattern>scala.**</pattern>
+                                    <result>com.pneumaticraft.scalamc.inject.scala.@1</result>
+                                </rule>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
 
     </build>
