@@ -12,14 +12,29 @@
     </properties>
     <repositories>
         <repository>
-            <id>OnARandomBox</id>
-            <url>http://repo.onarandombox.com/artifactory/repo</url>
+            <id>pneumaticsystem</id>
+            <url>http://pneumaticsystem.com:25578/nexus/content/groups/public</url>
+        </repository>
+        <repository>
+            <id>scala-tools.org</id>
+            <name>Scala-tools Maven2 Repository</name>
+            <url>http://scala-tools.org/repo-releases</url>
         </repository>
     </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>scala-tools.org</id>
+            <name>Scala-tools Maven2 Repository</name>
+            <url>http://scala-tools.org/repo-releases</url>
+        </pluginRepository>
+    </pluginRepositories>
     <build>
+
         <defaultGoal>clean package</defaultGoal>
+
         <plugins>
-            <!-- Compiler -->
+
+            <!-- Compilers: Java and Scala -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -29,6 +44,37 @@
                     <target>1.6</target>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.scala-tools</groupId>
+                <artifactId>maven-scala-plugin</artifactId>
+                <version>2.15.2</version>
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <goals><goal>compile</goal></goals>
+                        <phase>compile</phase>
+                    </execution>
+                    <execution>
+                        <id>test-compile</id>
+                        <goals><goal>testCompile</goal></goals>
+                        <phase>test-compile</phase>
+                    </execution>
+                    <execution>
+                        <phase>process-resources</phase>
+                        <goals><goal>compile</goal></goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <scalaVersion>${scala.version}</scalaVersion>
+                    <args>
+                        <arg>-make:transitivenocp</arg>
+                        <arg>-dependencyfile</arg>
+                        <arg>${project.build.directory}/.scala_dependencies</arg>
+                    </args>
+                </configuration>
+            </plugin>
+
             <!-- Build Helper - Additional Source Folders -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -51,6 +97,8 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <!-- Build Helper - text replacement -->
             <plugin>
                 <groupId>com.google.code.maven-replacer-plugin</groupId>
                 <artifactId>maven-replacer-plugin</artifactId>
@@ -73,6 +121,7 @@
                     </replacements>
                 </configuration>
             </plugin>
+
             <!-- Jar Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -85,8 +134,11 @@
                     </archive>
                 </configuration>
             </plugin>
+
         </plugins>
+
     </build>
+
     <dependencies>
         <!-- Bukkit Dependency -->
         <dependency>
@@ -102,6 +154,12 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.8.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>2.9.2</version>
         </dependency>
     </dependencies>
 </project>
