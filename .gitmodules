@@ -1,0 +1,3 @@
+[submodule "lib/CommandHandler"]
+	path = lib/CommandHandler
+	url = git://github.com/PneumatiCraft/CommandHandler.git
